@@ -1,0 +1,32 @@
+class Solution
+{
+    static ArrayList<Integer> subarraySum(int[] arr, int n, int s)
+    {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        int left = 0;
+        int right = 1;
+        int cur = arr[left];
+
+        while(right<=n)
+        {
+            while(cur>s && left<right-1)
+            {
+                cur = cur-arr[left];
+                left++;
+            }
+            if(cur==s)
+            {
+                res.add(left+1);
+                res.add(right);
+                return res;
+            }
+            if(right<n)
+            {
+                cur = cur + arr[right];
+            }
+            right++;
+        }
+        res.add(-1);
+        return res;
+    }
+}
